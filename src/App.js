@@ -12,6 +12,7 @@ import Polls from './pages/Poll/Polls';
 import PollsDetails from './pages/Poll/PollsDetails';
 import AddPoll from './pages/Poll/AddPoll';
 
+axios.defaults.withCredentials = true;
 export const URL = process.env.REACT_APP_URL;
 
 function App() {
