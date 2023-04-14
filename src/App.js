@@ -3,7 +3,7 @@ import axios from 'axios';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import Home from '../../frontend/src/pages/Home/Home';
+import Home from './pages/Home/Home';
 // import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
 
