@@ -38,6 +38,7 @@ const Header = ({
       toast.success('Logged out successfully');
       dispatch(SET_LOGIN(false));
       localStorage.removeItem('isAdmin');
+      localStorage.removeItem('isLoggedIn');
 
       localStorage.removeItem('username');
     } catch (error) {
@@ -82,21 +83,25 @@ const Header = ({
               </li>
             ) : null}
 
-            {!LoggedIn ? (
+            {LoggedIn === false ? (
               <>
                 <li className="text-white">
                   <Link to={link1}>{text1}</Link>
                 </li>
                 <li>
-                  <button
-                    className="py-1 px-2 text-white rounded-sm bg-blue-600"
-                    onClick={logOut ? logOutHandler : null}
-                  >
+                  <button className="py-1 px-2 text-white rounded-sm bg-blue-600">
                     <Link to={link2}>{text2}</Link>
                   </button>
                 </li>
               </>
-            ) : null}
+            ) : (
+              <button
+                className="py-1 px-2 text-white rounded-sm bg-blue-600"
+                onClick={logOutHandler}
+              >
+                <Link>{'Log out'}</Link>
+              </button>
+            )}
 
             {admin && LoggedIn && pathname !== '/addPoll' ? (
               <>
@@ -108,7 +113,7 @@ const Header = ({
                 </li>
               </>
             ) : null}
-            {LoggedIn && pathname !== '/polls' && (
+            {LoggedIn === true && pathname !== '/polls' && (
               <li>
                 <button className="py-1 px-2 text-white rounded-sm bg-blue-600">
                   <Link to={'/polls'}>{'Polls'}</Link>
