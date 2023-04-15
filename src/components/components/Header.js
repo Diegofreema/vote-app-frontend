@@ -22,7 +22,7 @@ const Header = ({
   const dispatch = useDispatch();
   const { isAdmin, isLoggedIn } = useSelector(SET_LOGIN).payload.auth;
   const LoggedIn = !!isLoggedIn;
-
+  const admin = !!isAdmin;
   const { pathname } = useLocation();
 
   const { payload } = useSelector(SET_USERNAME);
@@ -75,6 +75,11 @@ const Header = ({
                 <Link to={'/'}>Home</Link>
               </li>
             ) : null}
+            {LoggedIn && pathname !== '/' ? (
+              <li className="text-white">
+                <Link to={'/'}>Home</Link>
+              </li>
+            ) : null}
 
             {LoggedIn ? (
               <>
@@ -101,7 +106,7 @@ const Header = ({
               </>
             )}
 
-            {isAdmin && LoggedIn && pathname !== '/addPoll' ? (
+            {admin && LoggedIn && pathname !== '/addPoll' ? (
               <>
                 <li
                   className="text-white  py-1 px-2
@@ -111,7 +116,7 @@ const Header = ({
                 </li>
               </>
             ) : null}
-            {pathname !== '/polls' && pathname !== '/' ? (
+            {LoggedIn && pathname !== '/polls' ? (
               <li>
                 <button className="py-1 px-2 text-white rounded-sm bg-blue-600">
                   <Link to={'/polls'}>{'Polls'}</Link>
