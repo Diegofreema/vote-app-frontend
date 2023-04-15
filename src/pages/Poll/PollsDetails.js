@@ -19,8 +19,11 @@ const PollsDetails = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [answer, setAnswer] = useState('');
 
-  const { question, _id, options, expiresIn } = poll;
-
+  const { question, _id, options, createdAt } = poll;
+  // console.log(createdAt);
+  const created = new Date(createdAt).getTime();
+  const expiresIn = created + 1000 * 86400;
+  console.log(expiresIn);
   const data = {
     labels: options?.map((option) => option.option),
     datasets: [
@@ -48,7 +51,7 @@ const PollsDetails = () => {
       setSecondLeft(Math.floor((gap % minute) / second));
     }, 1000);
     return () => clearInterval(interval);
-  }, [expiresIn]);
+  }, [createdAt]);
 
   useEffect(() => {
     const getPoll = async () => {
@@ -57,6 +60,7 @@ const PollsDetails = () => {
         const { data } = await axios.get(`${URL}/api/polls/${id}`);
         setIsLoading(false);
         setPoll(data);
+        // console.log(data);
       } catch (error) {
         setIsLoading(false);
         console.log(error.message);

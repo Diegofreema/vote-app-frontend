@@ -34,9 +34,7 @@ const Polls = () => {
   const deleteHandler = async (id) => {
     setIsLoading(true);
     try {
-      const { data } = await axios.delete(
-        `http://localhost:4000/api/polls/${id}`
-      );
+      const { data } = await axios.delete(`${URL}/api/polls/${id}`);
       setIsLoading(false);
       toast.success(`${data.question} has been deleted`);
       getAllPolls();
@@ -61,7 +59,7 @@ const Polls = () => {
       ) : (
         <>
           <div>
-            <h3 className="text-white mt-4 text-2xl font-bold text-center">
+            <h3 className="text-white sm:mt-4 mt-20 text-2xl font-bold text-center">
               Click on each poll to vote!!!
             </h3>
           </div>

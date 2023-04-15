@@ -21,6 +21,7 @@ const Header = ({
 }) => {
   const dispatch = useDispatch();
   const { isAdmin, isLoggedIn } = useSelector(SET_LOGIN).payload.auth;
+  const LoggedIn = !!isLoggedIn;
 
   const { pathname } = useLocation();
 
@@ -69,17 +70,13 @@ const Header = ({
         )}
         <div className="buttons ">
           <ul className="flex items-center gap-2">
-            {isLoggedIn ? (
+            {!LoggedIn && pathname !== '/' ? (
               <li className="text-white">
                 <Link to={'/'}>Home</Link>
               </li>
             ) : null}
-            {isLoggedIn === true && pathname === '/' ? (
-              <li className="py-1 px-2 text-white ">
-                <Link to={'/polls'}>Polls</Link>
-              </li>
-            ) : null}
-            {isLoggedIn ? (
+
+            {LoggedIn ? (
               <>
                 <li
                   className="py-1 px-2 text-white rounded-sm bg-blue-600"
@@ -104,7 +101,7 @@ const Header = ({
               </>
             )}
 
-            {isAdmin && isLoggedIn && pathname !== '/addPoll' ? (
+            {isAdmin && LoggedIn && pathname !== '/addPoll' ? (
               <>
                 <li
                   className="text-white  py-1 px-2
