@@ -44,6 +44,7 @@ const Header = ({
       toast.error(error.message);
     }
   };
+  console.log(LoggedIn);
   return (
     <div className={`sm:py-6 p-2 fixed top-0 left-0 right-0  z-10 bg-blue-900`}>
       <div
@@ -81,16 +82,7 @@ const Header = ({
               </li>
             ) : null}
 
-            {LoggedIn ? (
-              <>
-                <li
-                  className="py-1 px-2 text-white rounded-sm bg-blue-600"
-                  onClick={logOutHandler}
-                >
-                  <Link to={'/'}>Log out</Link>
-                </li>
-              </>
-            ) : (
+            {!LoggedIn ? (
               <>
                 <li className="text-white">
                   <Link to={link1}>{text1}</Link>
@@ -104,7 +96,7 @@ const Header = ({
                   </button>
                 </li>
               </>
-            )}
+            ) : null}
 
             {admin && LoggedIn && pathname !== '/addPoll' ? (
               <>
@@ -116,13 +108,13 @@ const Header = ({
                 </li>
               </>
             ) : null}
-            {LoggedIn && pathname !== '/polls' ? (
+            {LoggedIn && pathname !== '/polls' && (
               <li>
                 <button className="py-1 px-2 text-white rounded-sm bg-blue-600">
                   <Link to={'/polls'}>{'Polls'}</Link>
                 </button>
               </li>
-            ) : null}
+            )}
           </ul>
         </div>
       </div>
