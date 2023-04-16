@@ -2,9 +2,18 @@ import axios from 'axios';
 import React from 'react';
 import { AiOutlineIe } from 'react-icons/ai';
 import { BsDashLg } from 'react-icons/bs';
-import { Link, useLocation } from 'react-router-dom';
+import {
+  Link,
+  useLocation,
+  useNavigate,
+  useNavigation,
+} from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { SET_USERNAME, SET_LOGIN } from '../../Redux/features/authSlice';
+import {
+  SET_USERNAME,
+  SET_LOGIN,
+  SET_ISADMIN,
+} from '../../Redux/features/authSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { URL } from '../../App';
 
@@ -20,10 +29,13 @@ const Header = ({
   away = false,
 }) => {
   const dispatch = useDispatch();
-  const { isAdmin, isLoggedIn } = useSelector(SET_LOGIN).payload.auth;
+  const { isLoggedIn } = useSelector(SET_LOGIN).payload.auth;
   const LoggedIn = !!isLoggedIn;
-  const admin = !!isAdmin;
+  const { isAdmin } = useSelector(SET_ISADMIN).payload.auth;
+  console.log(isAdmin);
+  // const admin = !!isAdmin;
   const { pathname } = useLocation();
+  const navigate = useNavigate();
 
   const { payload } = useSelector(SET_USERNAME);
   // const { auth: isAdmin } = useSelector(SET_ISADMIN).payload;
@@ -41,11 +53,12 @@ const Header = ({
       localStorage.removeItem('isLoggedIn');
 
       localStorage.removeItem('username');
+      navigate('/');
     } catch (error) {
       toast.error(error.message);
     }
   };
-  console.log(LoggedIn);
+  // console.log(LoggedIn);
   return (
     <div className={`sm:py-6 p-2 fixed top-0 left-0 right-0  z-10 bg-blue-900`}>
       <div
@@ -64,14 +77,14 @@ const Header = ({
             ) : null}
           </div>
         ) : (
-          <div className="logo flex items-center">
+          <div className="logo flex items-center mr">
             <AiOutlineIe size={35} color="#fff" />
             <BsDashLg color="#fff" />
             <span className="text-3xl text-white font-bold ">Vote</span>
           </div>
         )}
         <div className="buttons ">
-          <ul className="flex items-center gap-2">
+          <ul className="flex items-center flex-wrap gap-2">
             {!LoggedIn && pathname !== '/' ? (
               <li className="text-white">
                 <Link to={'/'}>Home</Link>
@@ -103,7 +116,7 @@ const Header = ({
               </button>
             )}
 
-            {admin && LoggedIn && pathname !== '/addPoll' ? (
+            {isAdmin && LoggedIn && pathname === '/polls' ? (
               <>
                 <li
                   className="text-white  py-1 px-2

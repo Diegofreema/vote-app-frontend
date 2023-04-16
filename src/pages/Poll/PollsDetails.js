@@ -37,21 +37,26 @@ const PollsDetails = () => {
     ],
   };
   useEffect(() => {
-    const interval = setInterval(() => {
-      const countDate = new Date(expiresIn).getTime();
-      const now = new Date().getTime();
-      const second = 1000;
-      const minute = second * 60;
-      const hour = minute * 60;
-      const day = hour * 24;
-      const gap = countDate - now;
-      setDayLeft(Math.floor(gap / day));
-      setHourLeft(Math.floor((gap % day) / hour));
-      setMinuteLeft(Math.floor((gap % hour) / minute));
-      setSecondLeft(Math.floor((gap % minute) / second));
-    }, 1000);
+    const interval = setInterval(
+      () => {
+        const countDate = new Date(expiresIn).getTime();
+        const now = new Date().getTime();
+        const second = 1000;
+        const minute = second * 60;
+        const hour = minute * 60;
+        const day = hour * 24;
+        const gap = countDate - now;
+        setDayLeft(Math.floor(gap / day));
+        setHourLeft(Math.floor((gap % day) / hour));
+        setMinuteLeft(Math.floor((gap % hour) / minute));
+        setSecondLeft(Math.floor((gap % minute) / second));
+      },
+      +dayLeft <= 0 && +hourLeft <= 0 && minuteLeft <= 0 && +secondLeft <= 0
+        ? null
+        : 1000
+    );
     return () => clearInterval(interval);
-  }, [createdAt]);
+  }, [expiresIn, dayLeft, hourLeft, minuteLeft, secondLeft]);
 
   useEffect(() => {
     const getPoll = async () => {
@@ -109,25 +114,25 @@ const PollsDetails = () => {
             <div className="flex items-center justify-center space-x-3">
               <div className="flex flex-col space-y-1">
                 <div className="text-2xl text-white font-medium space-y-1">
-                  {Number(dayLeft)}:
+                  {Number(dayLeft) <= 0 ? 0 : Number(dayLeft)}:
                 </div>
                 <span className="text-white">Day</span>
               </div>
               <div className="flex flex-col space-y-1">
                 <div className="text-2xl text-white font-medium space-y-1">
-                  {Number(hourLeft)}:
+                  {Number(hourLeft) <= 0 ? 0 : Number(hourLeft)}:
                 </div>
                 <span className="text-white"> Hr</span>
               </div>
               <div className="flex flex-col space-y-1">
                 <div className="text-2xl text-white font-medium space-y-1">
-                  {Number(minuteLeft)}:
+                  {Number(minuteLeft) <= 0 ? 0 : Number(minuteLeft)}:
                 </div>
                 <span className="text-white">Min</span>
               </div>
               <div className="flex flex-col space-y-1">
                 <div className="text-2xl text-white font-medium space-y-1">
-                  {Number(secondLeft)}
+                  {Number(secondLeft) <= 0 ? 0 : Number(secondLeft)}
                 </div>
                 <span className="text-white">Sec</span>
               </div>
@@ -154,11 +159,13 @@ const PollsDetails = () => {
                   })}
                 </div>
                 <div className="text-center mt-2">
-                  {Number(dayLeft) === 0 &&
-                  Number(hourLeft) === 0 &&
-                  Number(minuteLeft) === 0 &&
-                  Number(secondLeft) === 0 ? (
-                    <>Vote has ended, Please check results</>
+                  {Number(dayLeft) <= 0 &&
+                  Number(hourLeft) <= 0 &&
+                  Number(minuteLeft) <= 0 &&
+                  Number(secondLeft) <= 0 ? (
+                    <p className="text-xl font-bold">
+                      Vote has ended, Please check results below!!!
+                    </p>
                   ) : (
                     <div className="flex item-center space-x-2 justify-center">
                       <div className="flex items-center space-x-2">
