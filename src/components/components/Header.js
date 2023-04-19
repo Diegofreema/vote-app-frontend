@@ -67,7 +67,7 @@ const Header = ({
         } space-y-2 justify-between items-center mx-auto max-w-6xl`}
       >
         {logOut ? (
-          <div className="logo flex items-center space-x-2 text-white  ">
+          <div className="logo flex items-center space-x-2 text-white font-bold  ">
             {vote ? null : <p className="text-xl">Welcome,</p>}
             <span className="text-base uppercase text-white font-bold ">
               {userName.length > 7 ? `${userName.slice(0, 7)}...` : userName}
