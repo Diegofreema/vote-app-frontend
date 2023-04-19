@@ -8,13 +8,30 @@ import BarCart from '../../components/components/BarCart';
 import { URL } from '../../App';
 
 const PollsDetails = () => {
-  const [dayLeft, setDayLeft] = useState('00');
-  const [hourLeft, setHourLeft] = useState('00');
-  const [minuteLeft, setMinuteLeft] = useState('00');
-  const [secondLeft, setSecondLeft] = useState('00');
+  const { id } = useParams();
+
+  useEffect(() => {
+    const getPoll = async () => {
+      setIsLoading(true);
+      try {
+        const { data } = await axios.get(`${URL}/api/polls/${id}`);
+        setIsLoading(false);
+        setPoll(data);
+        // console.log(data);
+      } catch (error) {
+        setIsLoading(false);
+        console.log(error.message);
+        toast.error(error.message);
+      }
+    };
+    getPoll();
+  }, [id]);
+  const [dayLeft, setDayLeft] = useState(0);
+  const [hourLeft, setHourLeft] = useState(0);
+  const [minuteLeft, setMinuteLeft] = useState(0);
+  const [secondLeft, setSecondLeft] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState('candidate');
 
-  const { id } = useParams();
   const [poll, setPoll] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [answer, setAnswer] = useState('');
@@ -58,22 +75,6 @@ const PollsDetails = () => {
     return () => clearInterval(interval);
   }, [expiresIn, dayLeft, hourLeft, minuteLeft, secondLeft]);
 
-  useEffect(() => {
-    const getPoll = async () => {
-      setIsLoading(true);
-      try {
-        const { data } = await axios.get(`${URL}/api/polls/${id}`);
-        setIsLoading(false);
-        setPoll(data);
-        // console.log(data);
-      } catch (error) {
-        setIsLoading(false);
-        console.log(error.message);
-        toast.error(error.message);
-      }
-    };
-    getPoll();
-  }, [id]);
   const vote = async (id) => {
     setIsLoading(true);
     try {
@@ -114,25 +115,25 @@ const PollsDetails = () => {
             <div className="flex items-center justify-center space-x-3">
               <div className="flex flex-col space-y-1">
                 <div className="text-2xl text-white font-medium space-y-1">
-                  {Number(dayLeft) <= 0 ? 0 : Number(dayLeft)}:
+                  {+dayLeft <= 0 ? 0 : +dayLeft}:
                 </div>
                 <span className="text-white">Day</span>
               </div>
               <div className="flex flex-col space-y-1">
                 <div className="text-2xl text-white font-medium space-y-1">
-                  {Number(hourLeft) <= 0 ? 0 : Number(hourLeft)}:
+                  {+hourLeft <= 0 ? 0 : +hourLeft}:
                 </div>
                 <span className="text-white"> Hr</span>
               </div>
               <div className="flex flex-col space-y-1">
                 <div className="text-2xl text-white font-medium space-y-1">
-                  {Number(minuteLeft) <= 0 ? 0 : Number(minuteLeft)}:
+                  {+minuteLeft <= 0 ? 0 : +minuteLeft}:
                 </div>
                 <span className="text-white">Min</span>
               </div>
               <div className="flex flex-col space-y-1">
                 <div className="text-2xl text-white font-medium space-y-1">
-                  {Number(secondLeft) <= 0 ? 0 : Number(secondLeft)}
+                  {+secondLeft <= 0 ? 0 : +secondLeft}
                 </div>
                 <span className="text-white">Sec</span>
               </div>

@@ -68,8 +68,8 @@ const Header = ({
       >
         {logOut ? (
           <div className="logo flex items-center space-x-2 text-white  ">
-            {vote ? null : <p className="text-4xl">Welcome,</p>}
-            <span className="text-3xl uppercase text-white font-bold ">
+            {vote ? null : <p className="text-xl">Welcome,</p>}
+            <span className="text-base uppercase text-white font-bold ">
               {userName}
             </span>{' '}
             {vote ? (
