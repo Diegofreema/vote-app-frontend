@@ -70,7 +70,7 @@ const Header = ({
           <div className="logo flex items-center space-x-2 text-white  ">
             {vote ? null : <p className="text-xl">Welcome,</p>}
             <span className="text-base uppercase text-white font-bold ">
-              {userName.length > 7 ? userName.slice(0, 7) : userName}...
+              {`${userName.length > 7} ? ${userName.slice(0, 7)}... : ${userName}`}
             </span>{' '}
             {vote ? (
               <p className="sm:text-3xl text-xl">{'  '}Your vote counts</p>
