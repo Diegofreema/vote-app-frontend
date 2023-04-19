@@ -19,7 +19,7 @@ const PollCard = ({ question, options, voted, id, deleteHandler }) => {
           </div>
         </div>
       </Link>
-      {isAdmin === true ? (
+      {isAdmin === 'true' ? (
         <MdCancel
           className="absolute top-1 right-0 cursor-pointer "
           onClick={deleteHandler.bind(this, id)}

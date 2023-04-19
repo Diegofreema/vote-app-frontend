@@ -59,7 +59,7 @@ const Polls = () => {
       ) : (
         <>
           <div>
-            <h3 className="text-white sm:mt-4 mt-20 text-2xl font-bold text-center">
+            <h3 className="text-white sm:mt-4 mt-20 md:mt-32 text-2xl font-bold text-center">
               Click on each poll to vote!!!
             </h3>
           </div>
