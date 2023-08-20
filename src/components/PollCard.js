@@ -6,6 +6,7 @@ import { SET_LOGIN } from '../Redux/features/authSlice';
 
 const PollCard = ({ question, options, voted, id, deleteHandler }) => {
   const { isAdmin } = useSelector(SET_LOGIN).payload.auth;
+  console.log(isAdmin);
 
   return (
     <div className="relative bg-white w-[100%] sm:[80%] flex-1 sm:w-[50%] mx-auto rounded-sm shadow-md shadow-black/80 p-4 mb-6 cursor-pointer hover:scale-110 transition-all duration-300">
@@ -19,7 +20,7 @@ const PollCard = ({ question, options, voted, id, deleteHandler }) => {
           </div>
         </div>
       </Link>
-      {isAdmin === 'true' ? (
+      {isAdmin ? (
         <MdCancel
           className="absolute top-1 right-0 cursor-pointer "
           onClick={deleteHandler.bind(this, id)}

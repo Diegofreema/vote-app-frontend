@@ -2,12 +2,7 @@ import axios from 'axios';
 import React from 'react';
 import { AiOutlineIe } from 'react-icons/ai';
 import { BsDashLg } from 'react-icons/bs';
-import {
-  Link,
-  useLocation,
-  useNavigate,
-  useNavigation,
-} from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import {
   SET_USERNAME,

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { CiLogin } from 'react-icons/ci';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { initialState } from './Register';
@@ -18,7 +18,7 @@ const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState(initialState);
 
-  const { username, password } = formData;
+  const { email, password } = formData;
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -29,7 +29,7 @@ const Login = () => {
   };
   const loginUser = async (e) => {
     e.preventDefault();
-    if (!username || !password) {
+    if (!email || !password) {
       return toast.error('All fields are required');
     }
     if (password.length < 6) {
@@ -37,14 +37,20 @@ const Login = () => {
     }
 
     const userData = {
-      username: username.toLocaleLowerCase(),
-      password: password,
+      email,
+      password,
     };
 
     try {
       setIsLoading(true);
       // const data =  await registerUser(userData);
       const { data } = await axios.post(`${URL}/api/users/login`, userData);
+      if (!data.confirmed) {
+        setIsLoading(false);
+        return toast.error(
+          'Please verify your email, an email has been sent to you'
+        );
+      }
       toast.success('User logged in successfully');
       console.log(data);
       dispatch(SET_LOGIN(true));
@@ -73,9 +79,9 @@ const Login = () => {
             <input
               type="text"
               className="bg-slate-300 border-none rounded-md p-3 w-full  outline-none"
-              placeholder="Username"
-              name="username"
-              value={username}
+              placeholder="Email"
+              name="email"
+              value={email}
               onChange={handleInputChange}
             />
             <input
@@ -97,6 +103,9 @@ const Login = () => {
               </button>
             )}
           </form>
+          <p className="self-start">
+            <Link to={'/forgotpassword'}>Forgot password?</Link>
+          </p>
           <div className="text-center mb-4 flex space-x-1 items-center">
             <p className="text-xs">Don't have an account? </p>
 
