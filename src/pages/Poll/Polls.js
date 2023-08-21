@@ -23,7 +23,7 @@ const Polls = () => {
       .catch((error) => {
         if (error) {
           setIsLoading(false);
-          toast.error(error.message);
+          console.log(error);
         }
       });
   };
@@ -37,6 +37,8 @@ const Polls = () => {
       const { data } = await axios.delete(`${URL}/api/polls/${id}`);
       setIsLoading(false);
       toast.success(`${data.question} has been deleted`);
+      const filteredPolls = polls.filter((poll) => poll._id !== id);
+      setPolls(filteredPolls);
       getAllPolls();
     } catch (error) {
       console.log(error.message);
@@ -64,7 +66,7 @@ const Polls = () => {
             </h3>
           </div>
           <div className="mt-[50px] w-full">
-            {polls.length > 0 ? (
+            {polls?.length > 0 ? (
               polls?.map((poll) => (
                 <PollCard
                   key={poll._id}
