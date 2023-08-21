@@ -58,7 +58,7 @@ const Header = ({
   // console.log(LoggedIn);
   return (
     <div
-      className={` h-[50px] flex items-center py-8 px-4 fixed top-0 left-0 right-0  z-10 bg-blue-900`}
+      className={`  flex items-center pb-6 pt-2 px-4 fixed top-0 left-0 right-0  z-10 bg-blue-900`}
     >
       <div
         className={`container flex sm:flex-row ${
@@ -194,7 +194,7 @@ const Header = ({
             )}
           </ul>
         </div>
-        <div onClick={() => setIsOpen((prev) => !prev)}>
+        <div onClick={() => setIsOpen((prev) => !prev)} className="md:hidden">
           {isOpen ? (
             <FaTimes color="white" size={25} className="md:hidden" />
           ) : (
