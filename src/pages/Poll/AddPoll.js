@@ -1,16 +1,25 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from '../../components/components/Header';
 import Loader from '../../components/components/Loader';
 import { MdCancel } from 'react-icons/md';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { URL } from '../../App';
+import { useSelector } from 'react-redux';
+import { SET_LOGIN } from '../../Redux/features/authSlice';
+import { useNavigate } from 'react-router-dom';
 
 const AddPoll = () => {
-  //   const [value, setValue] = useState(['']);
+  const { isAdmin } = useSelector(SET_LOGIN).payload.auth;
   const [options, setOptions] = useState(['', '']);
   const [question, setQuestion] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!isAdmin) {
+      navigate('/polls');
+    }
+  }, [isAdmin, navigate]);
   const addOptions = () => {
     setOptions((prev) => [...prev, '']);
   };
@@ -43,6 +52,8 @@ const AddPoll = () => {
       console.log(error);
       setIsLoading(false);
       toast.error(error.message);
+    } finally {
+      setIsLoading(false);
     }
     setQuestion('');
     setOptions(['', '']);

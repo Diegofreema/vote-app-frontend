@@ -21,7 +21,7 @@ const authSlice = createSlice({
       state.isLoggedIn = action.payload;
     },
     SET_USERNAME(state, action) {
-      localStorage.setItem('username', JSON.stringify(action.payload));
+      localStorage.setItem('username', action.payload);
       state.username = action.payload;
     },
     SAVE_USER(state, action) {

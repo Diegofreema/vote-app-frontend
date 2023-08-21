@@ -60,7 +60,7 @@ const ForgotPassword = () => {
           <p className="text-center font-bold text-3xl">Forgot password</p>
           <form onSubmit={forgotPassword} className="grid space-y-4 w-full">
             <input
-              type="text"
+              type="email"
               className="bg-slate-300 border-none rounded-md p-3 w-full  outline-none"
               placeholder="Email"
               name="email"

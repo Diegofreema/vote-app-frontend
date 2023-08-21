@@ -1,5 +1,5 @@
 import React from 'react';
-import VoteImg from '../../assets/vote.jpg';
+import VoteImg from '../../assets/img.jpg';
 const Hero = () => {
   return (
     <div className="max-w-6xl mx-auto flex-col sm:mt-16  items-center justify-center md:flex-row flex h-full py-14 md:space-x-8 space-y-8 text-white">
@@ -18,7 +18,11 @@ const Hero = () => {
         </p>
       </div>
       <div className=" w-full h-[500px] rounded-sm overflow-hidden  shadow-lg shadow-black basis-[100%] md:basis-[55%]">
-        <img src={VoteImg} alt="vote-img" className="h-full w-full" />
+        <img
+          src={VoteImg}
+          alt="vote-img"
+          className="h-full w-full object-cover"
+        />
       </div>
     </div>
   );
