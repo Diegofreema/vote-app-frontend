@@ -103,7 +103,7 @@ const AddPoll = () => {
                 onClick={addOptions}
                 className="bg-blue-500 cursor-pointer p-2 mb-4 rounded-md text-white list-none"
               >
-                Add option
+                Add candidates
               </li>
               <button
                 type="submit"
