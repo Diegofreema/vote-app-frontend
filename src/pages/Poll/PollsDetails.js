@@ -105,92 +105,93 @@ const PollsDetails = () => {
         logOut={true}
         away={true}
       />
-
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <>
-          <div className=" mt-[100px] text-center">
-            <h2 className="text-2xl text-white font-bold">Vote ends in</h2>
-            <div className="flex items-center justify-center space-x-3">
-              <div className="flex flex-col space-y-1">
-                <div className="text-2xl text-white font-medium space-y-1">
-                  {+dayLeft <= 0 ? 0 : +dayLeft}:
+      <div className="h-screen bg-violet-950">
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <>
+            <div className=" mt-[100px] text-center">
+              <h2 className="text-2xl text-white font-bold">Vote ends in</h2>
+              <div className="flex items-center justify-center space-x-3">
+                <div className="flex flex-col space-y-1">
+                  <div className="text-2xl text-white font-medium space-y-1">
+                    {+dayLeft <= 0 ? 0 : +dayLeft}:
+                  </div>
+                  <span className="text-white">Day</span>
                 </div>
-                <span className="text-white">Day</span>
-              </div>
-              <div className="flex flex-col space-y-1">
-                <div className="text-2xl text-white font-medium space-y-1">
-                  {+hourLeft <= 0 ? 0 : +hourLeft}:
+                <div className="flex flex-col space-y-1">
+                  <div className="text-2xl text-white font-medium space-y-1">
+                    {+hourLeft <= 0 ? 0 : +hourLeft}:
+                  </div>
+                  <span className="text-white"> Hr</span>
                 </div>
-                <span className="text-white"> Hr</span>
-              </div>
-              <div className="flex flex-col space-y-1">
-                <div className="text-2xl text-white font-medium space-y-1">
-                  {+minuteLeft <= 0 ? 0 : +minuteLeft}:
+                <div className="flex flex-col space-y-1">
+                  <div className="text-2xl text-white font-medium space-y-1">
+                    {+minuteLeft <= 0 ? 0 : +minuteLeft}:
+                  </div>
+                  <span className="text-white">Min</span>
                 </div>
-                <span className="text-white">Min</span>
-              </div>
-              <div className="flex flex-col space-y-1">
-                <div className="text-2xl text-white font-medium space-y-1">
-                  {+secondLeft <= 0 ? 0 : +secondLeft}
+                <div className="flex flex-col space-y-1">
+                  <div className="text-2xl text-white font-medium space-y-1">
+                    {+secondLeft <= 0 ? 0 : +secondLeft}
+                  </div>
+                  <span className="text-white">Sec</span>
                 </div>
-                <span className="text-white">Sec</span>
               </div>
             </div>
-          </div>
-          <div className="mt-[50px] bg-white w-[100%]  sm:w-[50%] shadow-md mx-auto  py-4 shadow-black/50 rounded-lg">
-            <p className="font-bold sm:text-3xl text-xl text-black text-center mb-8">
-              {question}
-            </p>
+            <div className="mt-[50px] bg-white w-[100%]  sm:w-[50%] shadow-md mx-auto  py-4 shadow-black/50 rounded-lg">
+              <p className="font-bold sm:text-3xl text-xl text-black text-center mb-8">
+                {question}
+              </p>
 
-            {
-              <>
-                <div className="flex items-center flex-wrap mb-4 justify-evenly  w-[90%] mx-auto">
-                  {options?.map((option) => {
-                    return (
-                      <button
-                        onClick={() => getAnswer(option.option)}
-                        key={option._id}
-                        className="bg-violet-950 p-2 py-1 mb-2  cursor-pointer text-white rounded-sm "
-                      >
-                        {option.option}
-                      </button>
-                    );
-                  })}
-                </div>
-                <div className="text-center mt-2">
-                  {Number(dayLeft) <= 0 &&
-                  Number(hourLeft) <= 0 &&
-                  Number(minuteLeft) <= 0 &&
-                  Number(secondLeft) <= 0 ? (
-                    <p className="text-xl font-bold">
-                      Vote has ended, Please check results below!!!
-                    </p>
-                  ) : (
-                    <div className="flex item-center space-x-2 justify-center">
-                      <div className="flex items-center space-x-2">
-                        <p className="text-black  border border-black p-2 py-1">
-                          {selectedAnswer}
-                        </p>
+              {
+                <>
+                  <div className="flex items-center flex-wrap mb-4 justify-evenly  w-[90%] mx-auto">
+                    {options?.map((option) => {
+                      return (
                         <button
-                          onClick={() => vote(_id)}
-                          className="bg-black p-2 py-1   cursor-pointer text-white rounded-sm "
+                          onClick={() => getAnswer(option.option)}
+                          key={option._id}
+                          className="bg-violet-950 p-2 py-1 mb-2  cursor-pointer text-white rounded-sm "
                         >
-                          Submit
+                          {option.option}
                         </button>
+                      );
+                    })}
+                  </div>
+                  <div className="text-center mt-2">
+                    {Number(dayLeft) <= 0 &&
+                    Number(hourLeft) <= 0 &&
+                    Number(minuteLeft) <= 0 &&
+                    Number(secondLeft) <= 0 ? (
+                      <p className="text-xl font-bold">
+                        Vote has ended, Please check results below!!!
+                      </p>
+                    ) : (
+                      <div className="flex item-center space-x-2 justify-center">
+                        <div className="flex items-center space-x-2">
+                          <p className="text-black  border border-black p-2 py-1">
+                            {selectedAnswer}
+                          </p>
+                          <button
+                            onClick={() => vote(_id)}
+                            className="bg-black p-2 py-1   cursor-pointer text-white rounded-sm "
+                          >
+                            Submit
+                          </button>
+                        </div>
                       </div>
-                    </div>
-                  )}
-                </div>
-              </>
-            }
-          </div>
-          <div className="w-[100%] py-4   sm:w-[50%] mx-auto mt-5 ">
-            <BarCart data={data} />
-          </div>
-        </>
-      )}
+                    )}
+                  </div>
+                </>
+              }
+            </div>
+            <div className="w-[100%] py-4   sm:w-[50%] mx-auto mt-5 ">
+              <BarCart data={data} />
+            </div>
+          </>
+        )}
+      </div>
     </div>
   );
 };
