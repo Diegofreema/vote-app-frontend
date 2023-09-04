@@ -130,7 +130,7 @@ const PollsDetails = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setMounted(true);
-    }, 2000);
+    }, 1000);
 
     return () => clearTimeout(timer);
   }, []);
