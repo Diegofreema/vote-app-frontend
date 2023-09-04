@@ -160,10 +160,10 @@ const PollsDetails = () => {
                     })}
                   </div>
                   <div className="text-center mt-2">
-                    {Number(dayLeft) <= 0 &&
-                    Number(hourLeft) <= 0 &&
-                    Number(minuteLeft) <= 0 &&
-                    Number(secondLeft) <= 0 ? (
+                    {parseInt(dayLeft) <= 0 &&
+                    parseInt(hourLeft) <= 0 &&
+                    parseInt(minuteLeft) <= 0 &&
+                    parseInt(secondLeft) <= 0 ? (
                       <p className="text-xl font-bold">
                         Vote has ended, Please check results below!!!
                       </p>
