@@ -31,6 +31,7 @@ const PollsDetails = () => {
   const [minuteLeft, setMinuteLeft] = useState(0);
   const [secondLeft, setSecondLeft] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState('candidate');
+  const [mounted, setMounted] = useState(false);
 
   const [poll, setPoll] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -126,7 +127,14 @@ const PollsDetails = () => {
     }
     return 0;
   };
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setMounted(true);
+    }, 2000);
 
+    return () => clearTimeout(timer);
+  }, []);
+  if (!mounted) return null;
   return (
     <div className="m-h-screen sm:overflow-hidden px-4  flex-col items-center justify-center   py-8  bg-violet-950">
       <Header
