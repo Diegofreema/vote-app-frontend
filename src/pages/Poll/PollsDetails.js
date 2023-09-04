@@ -37,7 +37,7 @@ const PollsDetails = () => {
   const [answer, setAnswer] = useState('');
 
   const { question, _id, options, createdAt } = poll;
-
+  // console.log(createdAt);
   const created = new Date(createdAt).getTime();
   const expiresIn = created + 1000 * 60;
   console.log(expiresIn);
@@ -95,6 +95,10 @@ const PollsDetails = () => {
     setAnswer(option);
     setSelectedAnswer(option);
   };
+  const numberedDayLeft = +dayLeft;
+  const numberedHourLeft = +hourLeft;
+  const numberedMinuteLeft = +minuteLeft;
+  const numberedSecondLeft = +secondLeft;
 
   return (
     <div className="m-h-screen sm:overflow-hidden px-4  flex-col items-center justify-center   py-8  bg-violet-950">
@@ -115,25 +119,25 @@ const PollsDetails = () => {
               <div className="flex items-center justify-center space-x-3">
                 <div className="flex flex-col space-y-1">
                   <div className="text-2xl text-white font-medium space-y-1">
-                    {parseInt(dayLeft) <= 0 ? 0 : parseInt(dayLeft)}:
+                    {numberedDayLeft <= 0 ? 0 : numberedDayLeft}:
                   </div>
                   <span className="text-white">Day</span>
                 </div>
                 <div className="flex flex-col space-y-1">
                   <div className="text-2xl text-white font-medium space-y-1">
-                    {parseInt(hourLeft) <= 0 ? 0 : parseInt(hourLeft)}:
+                    {numberedHourLeft <= 0 ? 0 : numberedHourLeft}:
                   </div>
                   <span className="text-white"> Hr</span>
                 </div>
                 <div className="flex flex-col space-y-1">
                   <div className="text-2xl text-white font-medium space-y-1">
-                    {parseInt(minuteLeft) <= 0 ? 0 : parseInt(minuteLeft)}:
+                    {numberedMinuteLeft <= 0 ? 0 : numberedMinuteLeft}:
                   </div>
                   <span className="text-white">Min</span>
                 </div>
                 <div className="flex flex-col space-y-1">
                   <div className="text-2xl text-white font-medium space-y-1">
-                    {parseInt(secondLeft) <= 0 ? 0 : parseInt(secondLeft)}
+                    {numberedSecondLeft <= 0 ? 0 : numberedSecondLeft}
                   </div>
                   <span className="text-white">Sec</span>
                 </div>
@@ -160,10 +164,10 @@ const PollsDetails = () => {
                     })}
                   </div>
                   <div className="text-center mt-2">
-                    {parseInt(dayLeft) <= 0 &&
-                    parseInt(hourLeft) <= 0 &&
-                    parseInt(minuteLeft) <= 0 &&
-                    parseInt(secondLeft) <= 0 ? (
+                    {Number(dayLeft) <= 0 &&
+                    Number(hourLeft) <= 0 &&
+                    Number(minuteLeft) <= 0 &&
+                    Number(secondLeft) <= 0 ? (
                       <p className="text-xl font-bold">
                         Vote has ended, Please check results below!!!
                       </p>
