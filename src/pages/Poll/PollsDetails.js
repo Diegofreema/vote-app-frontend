@@ -100,6 +100,33 @@ const PollsDetails = () => {
   const numberedMinuteLeft = +minuteLeft;
   const numberedSecondLeft = +secondLeft;
 
+  const checkNumberDay = () => {
+    if (typeof numberedDayLeft === 'number') {
+      return numberedDayLeft <= 0 ? 0 : numberedDayLeft;
+    }
+    return 0;
+  };
+  const checkNumberHour = () => {
+    if (typeof numberedHourLeft === 'number') {
+      return numberedHourLeft <= 0 ? 0 : numberedHourLeft;
+    }
+    return 0;
+  };
+
+  const checkNumberMinute = () => {
+    if (typeof numberedMinuteLeft === 'number') {
+      return numberedMinuteLeft <= 0 ? 0 : numberedMinuteLeft;
+    }
+    return 0;
+  };
+
+  const checkNumberSecond = () => {
+    if (typeof numberedSecondLeft === 'number') {
+      return numberedSecondLeft <= 0 ? 0 : numberedSecondLeft;
+    }
+    return 0;
+  };
+
   return (
     <div className="m-h-screen sm:overflow-hidden px-4  flex-col items-center justify-center   py-8  bg-violet-950">
       <Header
@@ -119,25 +146,25 @@ const PollsDetails = () => {
               <div className="flex items-center justify-center space-x-3">
                 <div className="flex flex-col space-y-1">
                   <div className="text-2xl text-white font-medium space-y-1">
-                    {numberedDayLeft <= 0 ? 0 : numberedDayLeft}:
+                    {checkNumberDay()}:
                   </div>
                   <span className="text-white">Day</span>
                 </div>
                 <div className="flex flex-col space-y-1">
                   <div className="text-2xl text-white font-medium space-y-1">
-                    {numberedHourLeft <= 0 ? 0 : numberedHourLeft}:
+                    {checkNumberHour()}:
                   </div>
                   <span className="text-white"> Hr</span>
                 </div>
                 <div className="flex flex-col space-y-1">
                   <div className="text-2xl text-white font-medium space-y-1">
-                    {numberedMinuteLeft <= 0 ? 0 : numberedMinuteLeft}:
+                    {checkNumberMinute()}:
                   </div>
                   <span className="text-white">Min</span>
                 </div>
                 <div className="flex flex-col space-y-1">
                   <div className="text-2xl text-white font-medium space-y-1">
-                    {numberedSecondLeft <= 0 ? 0 : numberedSecondLeft}
+                    {checkNumberSecond()}
                   </div>
                   <span className="text-white">Sec</span>
                 </div>
