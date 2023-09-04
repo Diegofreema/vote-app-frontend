@@ -18,11 +18,9 @@ const Header = ({
   link2,
   text1,
   text2,
-  link3,
-  text3,
+
   logOut = false,
   vote = false,
-  away = false,
 }) => {
   const dispatch = useDispatch();
   const { isLoggedIn } = useSelector(SET_LOGIN).payload.auth;
@@ -55,7 +53,7 @@ const Header = ({
       toast.error(error.message);
     }
   };
-  // console.log(LoggedIn);
+
   return (
     <div
       className={`  flex items-center pb-6 pt-2 px-4 fixed top-0 left-0 right-0  z-10 bg-blue-900`}

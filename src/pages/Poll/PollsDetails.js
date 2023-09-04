@@ -37,9 +37,9 @@ const PollsDetails = () => {
   const [answer, setAnswer] = useState('');
 
   const { question, _id, options, createdAt } = poll;
-  // console.log(createdAt);
+
   const created = new Date(createdAt).getTime();
-  const expiresIn = created + 1000 * 86400;
+  const expiresIn = created + 1000 * 60;
   console.log(expiresIn);
   const data = {
     labels: options?.map((option) => option.option),
@@ -115,25 +115,25 @@ const PollsDetails = () => {
               <div className="flex items-center justify-center space-x-3">
                 <div className="flex flex-col space-y-1">
                   <div className="text-2xl text-white font-medium space-y-1">
-                    {+dayLeft <= 0 ? 0 : +dayLeft}:
+                    {parseInt(dayLeft) <= 0 ? 0 : parseInt(dayLeft)}:
                   </div>
                   <span className="text-white">Day</span>
                 </div>
                 <div className="flex flex-col space-y-1">
                   <div className="text-2xl text-white font-medium space-y-1">
-                    {+hourLeft <= 0 ? 0 : +hourLeft}:
+                    {parseInt(hourLeft) <= 0 ? 0 : parseInt(hourLeft)}:
                   </div>
                   <span className="text-white"> Hr</span>
                 </div>
                 <div className="flex flex-col space-y-1">
                   <div className="text-2xl text-white font-medium space-y-1">
-                    {+minuteLeft <= 0 ? 0 : +minuteLeft}:
+                    {parseInt(minuteLeft) <= 0 ? 0 : parseInt(minuteLeft)}:
                   </div>
                   <span className="text-white">Min</span>
                 </div>
                 <div className="flex flex-col space-y-1">
                   <div className="text-2xl text-white font-medium space-y-1">
-                    {+secondLeft <= 0 ? 0 : +secondLeft}
+                    {parseInt(secondLeft) <= 0 ? 0 : parseInt(secondLeft)}
                   </div>
                   <span className="text-white">Sec</span>
                 </div>

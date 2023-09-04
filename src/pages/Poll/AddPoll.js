@@ -75,7 +75,7 @@ const AddPoll = () => {
           <input
             type="text"
             className="bg-slate-300 border-none rounded-md p-3 w-full  outline-none"
-            placeholder="Question"
+            placeholder="Election"
             value={question}
             onChange={handleQuestion}
           />
@@ -84,7 +84,7 @@ const AddPoll = () => {
               <input
                 type="text"
                 className="bg-slate-300 border-none rounded-md p-3 w-full  outline-none"
-                placeholder="Options"
+                placeholder="Candidate name"
                 value={option}
                 onChange={(event) => handleOptions(event, i)}
               />
