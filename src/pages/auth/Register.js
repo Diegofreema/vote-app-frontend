@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FiUserPlus } from 'react-icons/fi';
+import { BsSquare, BsCheckSquare } from 'react-icons/bs';
 // eslint-disable-next-line
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -23,6 +24,7 @@ const Register = () => {
   // eslint-disable-next-line
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState(initialState);
+  const [checked, setChecked] = useState(false);
 
   const { username, password, email, confirmPassword } = formData;
 
@@ -61,6 +63,11 @@ const Register = () => {
     if (!password.match(symbols)) {
       return toast.error(
         'Password must contain at least one special character'
+      );
+    }
+    if (!checked) {
+      return toast.error(
+        'Please accept the terms and conditions before registering'
       );
     }
     const userData = {
@@ -141,6 +148,14 @@ const Register = () => {
               value={confirmPassword}
               onChange={handleInputChange}
             />
+            <div className="flex items-center space-x-2">
+              <div onClick={() => setChecked((prev) => !prev)}>
+                {!checked ? <BsSquare /> : <BsCheckSquare />}
+              </div>
+              <Link to={'/policy'} className="text-blue-500 underline">
+                Terms & Conditions
+              </Link>
+            </div>
             {isLoading ? (
               <Loader />
             ) : (
