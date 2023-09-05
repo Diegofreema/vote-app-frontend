@@ -44,6 +44,25 @@ const Register = () => {
     if (password !== confirmPassword) {
       return toast.error('Password do not match');
     }
+
+    const lowerCaseLetters = /[a-z]/g;
+    const upperCaseLetters = /[A-Z]/g;
+    const numbers = /[0-9]/g;
+    const symbols = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/g;
+    if (!password.match(lowerCaseLetters)) {
+      return toast.error('Password must contain at least one lowercase letter');
+    }
+    if (!password.match(upperCaseLetters)) {
+      return toast.error('Password must contain at least one uppercase letter');
+    }
+    if (!password.match(numbers)) {
+      return toast.error('Password must contain at least one number');
+    }
+    if (!password.match(symbols)) {
+      return toast.error(
+        'Password must contain at least one special character'
+      );
+    }
     const userData = {
       email,
       username: username.toLocaleLowerCase(),
