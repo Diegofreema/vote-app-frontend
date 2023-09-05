@@ -2,8 +2,8 @@ import React from 'react';
 
 const Policy = () => {
   return (
-    <div>
-      <pre>
+    <div className="min-h-screen  px-4  py-8 ">
+      <p className="w-[90%] md:w-[85%] mx-auto ">
         Terms and Conditions for Voting Site - Age Requirement Thank you for
         visiting the e-vote app.  The following terms and conditions apply to
         the use of this site and participation in any voting activities . By
@@ -44,7 +44,7 @@ const Policy = () => {
         acknowledge that you have read, understood, and agree to be bound by
         these Terms and Conditions, including the age requirement for voting. If
         you do not agree with these Terms, please do not use this Site.
-      </pre>
+      </p>
     </div>
   );
 };
