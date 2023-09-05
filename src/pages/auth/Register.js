@@ -97,7 +97,7 @@ const Register = () => {
   return (
     <>
       <div className="flex flex-col items-center h-screen bg-zinc-200">
-        <p className="text-center mb-6 text-black text-3xl">
+        <p className="text-center my-8 text-black text-3xl">
           You have to be 18 years old or older to register
         </p>
         <div className=" w-[90%] sm:w-[50%] m-auto p-4 flex flex-col justify-center items-center rounded-md text-center space-y-4  bg-white shadow-sm shadow-black/50">
