@@ -3,7 +3,7 @@ import React from 'react';
 const Policy = () => {
   return (
     <div className="min-h-screen  px-4  py-8 ">
-      <p className="w-[90%] md:w-[85%] mx-auto ">
+      <p className="w-[90%] md:w-[85%] mx-auto text-center ">
         Terms and Conditions for Voting Site - Age Requirement Thank you for
         visiting the e-vote app.  The following terms and conditions apply to
         the use of this site and participation in any voting activities . By
