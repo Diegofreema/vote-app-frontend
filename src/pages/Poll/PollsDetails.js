@@ -40,7 +40,7 @@ const PollsDetails = () => {
   const { question, _id, options, createdAt } = poll;
   // console.log(createdAt);
   const created = new Date(createdAt).getTime();
-  const expiresIn = created + 1000 * 120;
+  const expiresIn = created + 1000 * 180;
   console.log(expiresIn);
   const data = {
     labels: options?.map((option) => option.option),
